@@ -54,111 +54,23 @@
             </div>
 
             <div class="owl-carousel owl-theme carousel_4">
-                <div class="item">
-                    <div class="strip">
-                        <figure>
-                            <img src="img/lazy-placeholder.png" data-src="img/location_1.jpg" class="owl-lazy"
-                                alt="">
-                            <a href="/empresa/1" class="strip_info">
-                                <small>Pizza</small>
-                                <div class="item_title">
-                                    <h3>Da Alfredo</h3>
-                                    <small>27 Old Gloucester St</small>
-                                </div>
-                            </a>
-                        </figure>
+                @foreach ($newCompanies as $newCompany)
+                    <div class="item">
+                        <div class="strip">
+                            <figure>
+                                <img src="{{ env('PAINEL_URL') }}/storage/{{ $newCompany->image }}" data-src="{{ env('PAINEL_URL') }}/storage/{{ $newCompany->image }}" class="owl-lazy"
+                                    alt="">
+                                <a href="/empresa/{{ $newCompany->id }}" class="strip_info">
+                                    <small>{{ $newCompany->categories[0]->name }}</small>
+                                    <div class="item_title">
+                                        <h3>{{ $newCompany->name }}</h3>
+                                        <small>{{ "{$newCompany->city}/{$newCompany->state}" }}</small>
+                                    </div>
+                                </a>
+                            </figure>
+                        </div>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="strip">
-                        <figure>
-                            <img src="img/lazy-placeholder.png" data-src="img/location_2.jpg" class="owl-lazy"
-                                alt="">
-                            <a href="/empresa/1" class="strip_info">
-                                <small>Burghers</small>
-                                <div class="item_title">
-                                    <h3>Best Burghers</h3>
-                                    <small>27 Old Gloucester St</small>
-                                </div>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="strip">
-                        <figure>
-                            <img src="img/lazy-placeholder.png" data-src="img/location_3.jpg" class="owl-lazy"
-                                alt="">
-                            <a href="/empresa/1" class="strip_info">
-                                <small>Vegetarian</small>
-                                <div class="item_title">
-                                    <h3>Vego Life</h3>
-                                    <small>27 Old Gloucester St</small>
-                                </div>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="strip">
-                        <figure>
-                            <img src="img/lazy-placeholder.png" data-src="img/location_4.jpg" class="owl-lazy"
-                                alt="">
-                            <a href="/empresa/1" class="strip_info">
-                                <small>Japanese</small>
-                                <div class="item_title">
-                                    <h3>Sushi Temple</h3>
-                                    <small>27 Old Gloucester St</small>
-                                </div>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="strip">
-                        <figure>
-                            <img src="img/lazy-placeholder.png" data-src="img/location_5.jpg" class="owl-lazy"
-                                alt="">
-                            <a href="/empresa/1" class="strip_info">
-                                <small>Pizza</small>
-                                <div class="item_title">
-                                    <h3>Auto Pizza</h3>
-                                    <small>27 Old Gloucester St</small>
-                                </div>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="strip">
-                        <figure>
-                            <img src="img/lazy-placeholder.png" data-src="img/location_6.jpg" class="owl-lazy"
-                                alt="">
-                            <a href="/empresa/1" class="strip_info">
-                                <small>Burghers</small>
-                                <div class="item_title">
-                                    <h3>Alliance</h3>
-                                    <small>27 Old Gloucester St</small>
-                                </div>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="strip">
-                        <figure>
-                            <img src="img/lazy-placeholder.png" data-src="img/location_7.jpg" class="owl-lazy"
-                                alt="">
-                            <a href="/empresa/1" class="strip_info">
-                                <small>Chinese</small>
-                                <div class="item_title">
-                                    <h3>Alliance</h3>
-                                    <small>27 Old Gloucester St</small>
-                                </div>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <!-- /carousel -->
         </div>
@@ -216,92 +128,42 @@
                     <div class="col-md-6">
                         <div class="list_home">
                             <ul>
-                                <li>
-                                    <a href="detail-restaurant.html">
-                                        <figure>
-                                            <img src="img/location_list_placeholder.png" data-src="img/location_list_1.jpg" alt="" class="lazy">
-                                        </figure>
-                                        <em>Italian</em>
-                                        <h3>La Monnalisa</h3>
-                                        <small>8 Patriot Square E2 9NF</small>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="detail-restaurant.html">
-                                        <figure>
-                                            <img src="img/location_list_placeholder.png" data-src="img/location_list_1.jpg" alt="" class="lazy">
-                                        </figure>
-                                        <em>Italian</em>
-                                        <h3>La Monnalisa</h3>
-                                        <small>8 Patriot Square E2 9NF</small>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="detail-restaurant.html">
-                                        <figure>
-                                            <img src="img/location_list_placeholder.png" data-src="img/location_list_2.jpg" alt="" class="lazy">
-                                        </figure>
-                                        <em>Mexican</em>
-                                        <h3>Alliance</h3>
-                                        <small>27 Old Gloucester St, 4563</small>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="detail-restaurant.html">
-                                        <figure>
-                                            <img src="img/location_list_placeholder.png" data-src="img/location_list_3.jpg" alt="" class="lazy">
-                                        </figure>
-                                        <em>Sushi - Japanese</em>
-                                        <h3>Sushi Gold</h3>
-                                        <small>Old Shire Ln EN9 3RX</small>
-                                    </a>
-                                </li>
+                                @foreach ($featuredCompanies as $key => $featuredCompany)
+                                    @if ($key == 4)
+                                        @break
+                                    @endif
+                                    <li>
+                                        <a href="/empresa/{{ $featuredCompany->id }}">
+                                            <figure>
+                                                <img src="{{ env('PAINEL_URL') }}/storage/{{ $featuredCompany->image }}" data-src="{{ env('PAINEL_URL') }}/storage/{{ $featuredCompany->image }}" alt="" class="lazy">
+                                            </figure>
+                                            <em>{{ $featuredCompany->categories[0]->name }}</em>
+                                            <h3>{{ $featuredCompany->name }}</h3>
+                                            <small>{{ "{$featuredCompany->city}/{$featuredCompany->state}" }}</small>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="list_home">
                             <ul>
-                                <li>
-                                    <a href="detail-restaurant.html">
-                                        <figure>
-                                            <img src="img/location_list_placeholder.png" data-src="img/location_list_4.jpg" alt="" class="lazy">
-                                        </figure>
-                                        <em>Vegetarian</em>
-                                        <h3>Mr. Pepper</h3>
-                                        <small>27 Old Gloucester St, 4563</small>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="detail-restaurant.html">
-                                        <figure>
-                                            <img src="img/location_list_placeholder.png" data-src="img/location_list_1.jpg" alt="" class="lazy">
-                                        </figure>
-                                        <em>Italian</em>
-                                        <h3>La Monnalisa</h3>
-                                        <small>8 Patriot Square E2 9NF</small>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="detail-restaurant.html">
-                                        <figure>
-                                            <img src="img/location_list_placeholder.png" data-src="img/location_list_5.jpg" alt="" class="lazy">
-                                        </figure>
-                                        <em>Chinese</em>
-                                        <h3>Dragon Tower</h3>
-                                        <small>22 Hertsmere Rd E14 4ED</small>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="detail-restaurant.html">
-                                        <figure>
-                                            <img src="img/location_list_placeholder.png" data-src="img/location_list_6.jpg" alt="" class="lazy">
-                                        </figure>
-                                        <em>Pizza - Italian</em>
-                                        <h3>Bella Napoli</h3>
-                                        <small>135 Newtownards Road BT4</small>
-                                    </a>
-                                </li>
+                                @foreach ($featuredCompanies as $key => $featuredCompany)
+                                    @if ($key < 4)
+                                        @continue
+                                    @endif
+                                    <li>
+                                        <a href="detail-restaurant.html">
+                                            <figure>
+                                                <img src="img/location_list_placeholder.png" data-src="img/location_list_4.jpg" alt="" class="lazy">
+                                            </figure>
+                                            <em>Vegetarian</em>
+                                            <h3>Mr. Pepper</h3>
+                                            <small>27 Old Gloucester St, 4563</small>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

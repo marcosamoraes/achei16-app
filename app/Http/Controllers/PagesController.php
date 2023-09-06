@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Company;
 
 class PagesController extends Controller
 {
@@ -11,7 +12,18 @@ class PagesController extends Controller
         $categories = Category::where('status', true)
             ->withCount('companies')
             ->get();
-        return view('index', compact('categories'));
+
+        $newCompanies = Company::where('status', true)
+            ->latest()
+            ->take(8)
+            ->get();
+
+        $featuredCompanies = Company::where('status', true)
+            ->where('featured', true)
+            ->take(10)
+            ->get();
+
+        return view('index', compact('categories', 'newCompanies', 'featuredCompanies'));
     }
 
     public function listing()
