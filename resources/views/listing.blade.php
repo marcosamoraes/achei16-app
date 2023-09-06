@@ -14,13 +14,22 @@
                                 <li>Empresas</li>
                             </ul>
                         </div>
-                        <h1>145 empresas</h1>
+                        <h1>{{ $companies->count() }} empresas</h1>
                     </div>
                     <div class="col-xl-4 col-lg-5 col-md-5">
-                        <div class="search_bar_list">
-                            <input type="text" class="form-control" placeholder="O que está procurando?">
-                            <input type="submit" value="Busca">
-                        </div>
+                        <form>
+                            @foreach (request()->all() as $key => $value)
+                                @if ($key != 'city')
+                                    @foreach ((array) $value as $v)
+                                        <input type="hidden" name="{{ $key }}[]" value="{{ $v }}">
+                                    @endforeach
+                                @endif
+                            @endforeach
+                            <div class="search_bar_list">
+                                <input type="text" class="form-control" name="city" placeholder="Endereço, bairro, cidade..." value="{{ request()->city }}">
+                                <input type="submit" value="Busca">
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- /row -->
@@ -32,268 +41,74 @@
                 <aside class="col-lg-3" id="sidebar_fixed">
                     <div class="filter_col">
                         <div class="inner_bt"><a href="#" class="open_filters"><i class="icon_close"></i></a></div>
-                        <div class="filter_type">
-                            <h4><a href="#filter_1" data-bs-toggle="collapse" class="opened">Categorias</a></h4>
-                            <div class="collapse show" id="filter_1">
-                                <ul>
-                                    <li>
-                                        <label class="container_check">Categoria 1 <small>12</small>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">Categoria 2 <small>24</small>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">Categoria 3 <small>23</small>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">Categoria 4 <small>11</small>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">Categoria 5 <small>18</small>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">Categoria 6 <small>12</small>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">Categoria 7 <small>15</small>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
+                        <form>
+                            <input type="hidden" name="city" value="{{ request()->city }}">
+                            <div class="filter_type">
+                                <h4><a href="#filter_1" data-bs-toggle="collapse" class="opened">Categorias</a></h4>
+                                <div class="collapse show" id="filter_1">
+                                    <ul>
+                                        @foreach ($categories as $category)
+                                            <li>
+                                                <label class="container_check">{{ $category->name }} <small>{{ $category->companies_count }}</small>
+                                                    <input type="checkbox" name="cat[]" value="{{ $category->id }}" {{ in_array($category->id, (array) request()->cat) ? 'checked' : '' }}>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <!-- /filter_type -->
                             </div>
                             <!-- /filter_type -->
-                        </div>
-                        <!-- /filter_type -->
-                        <div class="buttons">
-                            <a href="#0" class="btn_1 full-width">Filtrar</a>
-                        </div>
+                            <div class="buttons">
+                                <button type="submit" class="btn_1 full-width">Filtrar</button>
+                            </div>
+                        </form>
                     </div>
                 </aside>
 
                 <div class="col-lg-9">
                     <div class="row">
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_1.jpg" class="img-fluid lazy"
-                                        alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Pizza</small>
-                                        <div class="item_title">
-                                            <h3>Da Alfredo</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
+                        @if ($companies->count() > 0)
+                            @foreach ($companies as $company)
+                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                    <div class="strip">
+                                        <figure>
+                                            <img src="img/lazy-placeholder.png" data-src="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" class="img-fluid lazy"
+                                                alt="">
+                                            <a href="/empresa/{{ $company->slug }}" class="strip_info">
+                                                <small>{{ $company->categories[0]->name }}</small>
+                                                <div class="item_title">
+                                                <h3>{{ $company->name }}</h3>
+                                                <small>{{ "{$company->city}/{$company->state}" }}</small>
+                                                </div>
+                                            </a>
+                                        </figure>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="alert alert-warning" role="alert">
+                                Nenhuma empresa foi encontrada nesta pesquisa.
                             </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_2.jpg" class="img-fluid lazy"
-                                        alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Burghers</small>
-                                        <div class="item_title">
-                                            <h3>Best Burghers</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_3.jpg" class="img-fluid lazy"
-                                        alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Vegetarian</small>
-                                        <div class="item_title">
-                                            <h3>Vego Life</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_4.jpg" class="img-fluid lazy"
-                                        alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Japanese</small>
-                                        <div class="item_title">
-                                            <h3>Sushi Temple</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_5.jpg" class="img-fluid lazy"
-                                        alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Pizza</small>
-                                        <div class="item_title">
-                                            <h3>Auto Pizza</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_6.jpg"
-                                        class="img-fluid lazy" alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Burghers</small>
-                                        <div class="item_title">
-                                            <h3>Alliance</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_7.jpg"
-                                        class="img-fluid lazy" alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Chinese</small>
-                                        <div class="item_title">
-                                            <h3>Alliance</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_8.jpg"
-                                        class="img-fluid lazy" alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Sushi</small>
-                                        <div class="item_title">
-                                            <h3>Dragon Tower</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_9.jpg"
-                                        class="img-fluid lazy" alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Mexican</small>
-                                        <div class="item_title">
-                                            <h3>El Paso Tacos</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_10.jpg"
-                                        class="img-fluid lazy" alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Bakery</small>
-                                        <div class="item_title">
-                                            <h3>Monnalisa</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_11.jpg"
-                                        class="img-fluid lazy" alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Mexican</small>
-                                        <div class="item_title">
-                                            <h3>Guachamole</h3>
-                                            <small>135 Newtownards Road</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <div class="strip">
-                                <figure>
-                                    <img src="img/lazy-placeholder.png" data-src="img/location_12.jpg"
-                                        class="img-fluid lazy" alt="">
-                                    <a href="/empresa/1" class="strip_info">
-                                        <small>Chinese</small>
-                                        <div class="item_title">
-                                            <h3>Pechino Express</h3>
-                                            <small>27 Old Gloucester St</small>
-                                        </div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- /strip grid -->
+                        @endif
                     </div>
                     <!-- /row -->
-                    <div class="pagination_fg">
-                        <a href="#">&laquo;</a>
-                        <a href="#" class="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">&raquo;</a>
-                    </div>
+                    @if ($companies->lastPage() > 1)
+                        <div class="pagination_fg">
+                            @if ($companies->currentPage() > 1)
+                                <a href="{{ $companies->previousPageUrl() }}">&laquo;</a>
+                            @endif
+
+                            @for ($i = 1; $i <= $companies->lastPage(); $i++)
+                                <a href="{{ $companies->url($i) }}" class="{{ $companies->currentPage() == $i ? 'active' : '' }}">{{ $i }}</a>
+                            @endfor
+
+                            @if ($companies->currentPage() < $companies->lastPage())
+                                <a href="{{ $companies->nextPageUrl() }}">&raquo;</a>
+                            @endif
+                        </div>
+                    @endif
                 </div>
                 <!-- /col -->
             </div>

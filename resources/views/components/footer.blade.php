@@ -5,12 +5,10 @@
                 <h3 data-bs-target="#collapse_1">Guia de Empresas</h3>
                 <div class="collapse dont-collapse-sm links" id="collapse_1">
                     <ul>
-                        <li><a href="#">Empresa 1</a></li>
-                        <li><a href="#">Empresa 2</a></li>
-                        <li><a href="#">Empresa 3</a></li>
-                        <li><a href="#">Empresa 4</a></li>
-                        <li><a href="#">Empresa 5</a></li>
-                        <li><a href="#"><b>Ver mais</b></a></li>
+                        @foreach ($footerCompanies as $footerCompany)
+                            <li><a href="/empresa/{{ $footerCompany->slug }}">{{ $footerCompany->name }}</a></li>
+                        @endforeach
+                        <li><a href="/empresas"><b>Ver mais</b></a></li>
                     </ul>
                 </div>
             </div>
@@ -18,12 +16,10 @@
                 <h3 data-bs-target="#collapse_2">Cidades Atendidas</h3>
                 <div class="collapse dont-collapse-sm links" id="collapse_2">
                     <ul>
-                        <li><a href="#">Cidade 1</a></li>
-                        <li><a href="#">Cidade 2</a></li>
-                        <li><a href="#">Cidade 3</a></li>
-                        <li><a href="#">Cidade 4</a></li>
-                        <li><a href="#">Cidade 5</a></li>
-                        <li><a href="#"><b>Ver mais</b></a></li>
+                        @foreach ($footerCities as $footerCity)
+                            <li><a href="/empresas?city={{ $footerCity }}">{{ $footerCity }}</a></li>
+                        @endforeach
+                        <li><a href="/empresas"><b>Ver mais</b></a></li>
                     </ul>
                 </div>
             </div>

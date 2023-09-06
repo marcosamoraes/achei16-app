@@ -10,42 +10,32 @@
                     <div class="detail_page_head clearfix">
                         <div class="breadcrumbs">
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Category</a></li>
-                                <li>Page active</li>
+                                <li><a href="/">Início</a></li>
+                                <li><a href="/empresas?cat={{ $company->categories[0]->id }}">{{ $company->categories[0]->name }}</a></li>
+                                <li>{{ $company->name }}</li>
                             </ul>
                         </div>
                         <div class="title">
-                            <h1>Pizzeria da Alfredo</h1>
-                            27 Old Gloucester St, 4530 London - <a
-                                href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x47e66e1de36f4147:0xb6615b4092e0351f!2sAssistance+Publique+-+H%C3%B4pitaux+de+Paris+(AP-HP)+-+Si%C3%A8ge!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361"
-                                target="blank">Get directions</a>
+                            <h1>{{ $company->name }}</h1>
+                            {{ "{$company->city}/{$company->state}" }} - <a
+                                href="https://www.google.com/maps/place/{{ $company->fullAddress }}"
+                                target="blank">Ver localização</a>
                             <ul class="tags">
-                                <li><a href="#0">Pizza</a></li>
-                                <li><a href="#0">Italian Food</a></li>
-                                <li><a href="#0">Best Price</a></li>
+                                @foreach ($company->tags as $tag)
+                                    <li><a href="#0" class="text-capitalize">{{ $tag->name }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
-                        <div class="rating">
+                        {{-- <div class="rating">
                             <div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- /detail_page_head -->
 
                     <div class="owl-carousel owl-theme carousel_1 magnific-gallery">
                         <div class="item">
-                            <a href="/img/location_1.jpg" title="Photo title" data-effect="mfp-zoom-in"><img
-                                    src="/img/detail_1.jpg" alt=""></a>
-                        </div>
-                        <div class="item">
-                            <a href="/img/location_1.jpg" title="Photo title" data-effect="mfp-zoom-in"><img
-                                    src="/img/lazy-placeholder-detail.png" data-src="/img/detail_2.jpg" class="owl-lazy"
-                                    alt=""></a>
-                        </div>
-                        <div class="item">
-                            <a href="/img/location_1.jpg" title="Photo title" data-effect="mfp-zoom-in"><img
-                                    src="/img/lazy-placeholder-detail.png" data-src="/img/detail_3.jpg" class="owl-lazy"
-                                    alt=""></a>
+                            <a href="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" title="Photo title" data-effect="mfp-zoom-in"><img
+                                    src="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" alt=""></a>
                         </div>
                     </div>
                     <!-- /carousel -->
@@ -54,12 +44,12 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab"
-                                    role="tab">Information</a>
+                                    role="tab">Informações</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab"
-                                    role="tab">Reviews</a>
-                            </li>
+                                    role="tab">Avaliações</a>
+                            </li> --}}
                         </ul>
 
                         <div class="tab-content" role="tablist">
@@ -69,7 +59,7 @@
                                     <h5>
                                         <a class="collapsed" data-bs-toggle="collapse" href="#collapse-A"
                                             aria-expanded="true" aria-controls="collapse-A">
-                                            Information
+                                            Informações
                                         </a>
                                     </h5>
                                 </div>
@@ -79,40 +69,24 @@
                                         <div class="add_bottom_45"></div>
                                         <h2>Galeria de Fotos</h2>
                                         <div class="pictures magnific-gallery clearfix">
-                                            <figure><a href="/img/detail_gallery/detail_1.jpg" title="Photo title"
-                                                    data-effect="mfp-zoom-in"><img src="/img/thumb_detail_placeholder.jpg"
-                                                        data-src="/img/thumb_detail_1.jpg" class="lazy"
-                                                        alt=""></a></figure>
-                                            <figure><a href="/img/detail_gallery/detail_2.jpg" title="Photo title"
-                                                    data-effect="mfp-zoom-in"><img src="/img/thumb_detail_placeholder.jpg"
-                                                        data-src="/img/thumb_detail_2.jpg" class="lazy"
-                                                        alt=""></a></figure>
-                                            <figure><a href="/img/detail_gallery/detail_3.jpg" title="Photo title"
-                                                    data-effect="mfp-zoom-in"><img src="/img/thumb_detail_placeholder.jpg"
-                                                        data-src="/img/thumb_detail_3.jpg" class="lazy"
-                                                        alt=""></a></figure>
-                                            <figure><a href="/img/detail_gallery/detail_4.jpg" title="Photo title"
-                                                    data-effect="mfp-zoom-in"><img src="/img/thumb_detail_placeholder.jpg"
-                                                        data-src="/img/thumb_detail_4.jpg" class="lazy"
-                                                        alt=""></a></figure>
-                                            <figure><a href="/img/detail_gallery/detail_5.jpg" title="Photo title"
-                                                    data-effect="mfp-zoom-in"><span
-                                                        class="d-flex align-items-center justify-content-center">+10</span><img
-                                                        src="/img/thumb_detail_placeholder.jpg"
-                                                        data-src="/img/thumb_detail_5.jpg" class="lazy"
-                                                        alt=""></a></figure>
+                                            @foreach ($company->images as $image)
+                                                <figure><a href="{{ env('PAINEL_URL') }}/storage/{{ $image }}" title="Photo title"
+                                                        data-effect="mfp-zoom-in"><img src="{{ env('PAINEL_URL') }}/storage/{{ $image }}"
+                                                            data-src="{{ env('PAINEL_URL') }}/storage/{{ $image }}" class="lazy"
+                                                            alt=""></a></figure>
+                                            @endforeach
                                         </div>
                                         <!-- /pictures -->
 
                                         <div class="other_info">
-                                            <h2>Entre em contato com a Pizzeria Alfredo</h2>
+                                            <h2>Entre em contato com a {{ $company->name }}</h2>
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <h3>Address</h3>
-                                                    <p>27 Old Gloucester St, 4530<br><a
-                                                            href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x47e66e1de36f4147:0xb6615b4092e0351f!2sAssistance+Publique+-+H%C3%B4pitaux+de+Paris+(AP-HP)+-+Si%C3%A8ge!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361"
-                                                            target="blank"><strong>Get directions</strong></a></p>
-                                                    <strong>Follow Us</strong><br>
+                                                    <h3>Endereço</h3>
+                                                    <p>{{ $company->fullAddress }}<br><a
+                                                            href="https://www.google.com/maps/place/{{ $company->fullAddress }}"
+                                                            target="blank"><strong>Ver localização</strong></a></p>
+                                                    <strong>Nos siga nas redes sociais</strong><br>
                                                     <p class="follow_us_detail">
                                                         <a href="#0"><i class="social_facebook_square" style="color: #1877f2"></i></a>
                                                         <a href="#0"><i class="social_instagram_square" style="color: #c13584"></i></a>
@@ -139,12 +113,12 @@
                             </div>
                             <!-- /tab -->
 
-                            <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+                            {{-- <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
                                 <div class="card-header" role="tab" id="heading-B">
                                     <h5>
                                         <a class="collapsed" data-bs-toggle="collapse" href="#collapse-B"
                                             aria-expanded="false" aria-controls="collapse-B">
-                                            Reviews
+                                            Avaliações
                                         </a>
                                     </h5>
                                 </div>
@@ -335,7 +309,7 @@
                                                 review</a></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- /tab-content -->
                     </div>

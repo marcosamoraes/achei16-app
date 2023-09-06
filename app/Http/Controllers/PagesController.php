@@ -4,9 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Company;
+use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+    public function __construct()
+    {
+        $footerCities = Company::where('status', true)
+            ->distinct()
+            ->take(5)
+            ->inRandomOrder()
+            ->pluck('city')
+            ->toArray();
+
+        $footerCompanies = Company::where('status', true)
+            ->take(5)
+            ->inRandomOrder()
+            ->get();
+
+        view()->share(compact('footerCities', 'footerCompanies'));
+    }
+
     public function index()
     {
         $categories = Category::where('status', true)
@@ -26,14 +44,35 @@ class PagesController extends Controller
         return view('index', compact('categories', 'newCompanies', 'featuredCompanies'));
     }
 
-    public function listing()
+    public function listing(Request $request)
     {
-        return view('listing');
+        $categories = Category::where('status', true)
+            ->withCount('companies')
+            ->get();
+
+        $companies = Company::where('status', true)
+            ->when($request->has('cat'), function ($query) {
+                $query->whereHas('categories', function ($query) {
+                    $query->whereIn('category_id', (array) request()->cat);
+                });
+            })
+            ->when($request->has('city'), function ($query) {
+                $query->where(function ($query) {
+                    $query->orWhere('address', 'like', '%' . request()->city . '%')
+                        ->orWhere('neighborhood', 'like', '%' . request()->city . '%')
+                        ->orWhere('city', 'like', '%' . request()->city . '%')
+                        ->orWhere('state', 'like', '%' . request()->city . '%');
+                });
+            })
+            ->paginate(15)
+            ->withQueryString();
+
+        return view('listing', compact('categories', 'companies'));
     }
 
-    public function viewCompany()
+    public function viewCompany(Request $request, Company $company)
     {
-        return view('view-company');
+        return view('view-company', compact('company'));
     }
 
     public function register()

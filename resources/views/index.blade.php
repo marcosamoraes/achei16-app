@@ -11,22 +11,16 @@
                         <div class="col-xl-12 col-lg-12 col-md-10">
                             <h1>Guia de empresa na sua cidade</h1>
                             <p>Seu anúncio visível</p>
-                            <form method="post" action="grid-listing-filterscol.html">
+                            <form action="/empresas">
 								<div class="row g-0 custom-search-input">
-									<div class="col-lg-4">
+									<div class="col-lg-6">
 										<div class="form-group">
-											<input class="form-control" type="text" placeholder="O que está procurando?">
-											<i class="icon_search"></i>
-										</div>
-									</div>
-									<div class="col-lg-3">
-										<div class="form-group">
-											<input class="form-control" type="text" id="autocomplete" placeholder="Endereço, bairro, cidade...">
+											<input class="form-control" name="city" type="text" id="autocomplete" placeholder="Endereço, bairro, cidade...">
 											<i class="icon_pin_alt"></i>
 										</div>
 									</div>
-									<div class="col-lg-3 custom_select">
-										<select class="wide">
+									<div class="col-lg-4 custom_select">
+										<select class="wide" name="cat">
 											<option>Categorias</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -60,7 +54,7 @@
                             <figure>
                                 <img src="{{ env('PAINEL_URL') }}/storage/{{ $newCompany->image }}" data-src="{{ env('PAINEL_URL') }}/storage/{{ $newCompany->image }}" class="owl-lazy"
                                     alt="">
-                                <a href="/empresa/{{ $newCompany->id }}" class="strip_info">
+                                <a href="/empresa/{{ $newCompany->slug }}" class="strip_info">
                                     <small>{{ $newCompany->categories[0]->name }}</small>
                                     <div class="item_title">
                                         <h3>{{ $newCompany->name }}</h3>
@@ -133,9 +127,9 @@
                                         @break
                                     @endif
                                     <li>
-                                        <a href="/empresa/{{ $featuredCompany->id }}">
+                                        <a href="/empresa/{{ $featuredCompany->slug }}">
                                             <figure>
-                                                <img src="{{ env('PAINEL_URL') }}/storage/{{ $featuredCompany->image }}" data-src="{{ env('PAINEL_URL') }}/storage/{{ $featuredCompany->image }}" alt="" class="lazy">
+                                                <img src="img/lazy-placeholder.png" data-src="{{ env('PAINEL_URL') }}/storage/{{ $featuredCompany->image }}" alt="" class="lazy">
                                             </figure>
                                             <em>{{ $featuredCompany->categories[0]->name }}</em>
                                             <h3>{{ $featuredCompany->name }}</h3>
