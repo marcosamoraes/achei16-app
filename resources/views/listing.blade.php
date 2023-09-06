@@ -76,7 +76,7 @@
                                         <figure>
                                             <img src="img/lazy-placeholder.png" data-src="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" class="img-fluid lazy"
                                                 alt="">
-                                            <a href="/empresa/{{ $company->slug }}" class="strip_info">
+                                            <a href="/empresa/{{ str()->slug($company->city) }}/{{ $company->slug }}" class="strip_info">
                                                 <small>{{ $company->categories[0]->name }}</small>
                                                 <div class="item_title">
                                                 <h3>{{ $company->name }}</h3>

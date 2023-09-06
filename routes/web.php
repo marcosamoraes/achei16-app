@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PagesController::class, 'index'])->name('index');
 Route::get('/empresas', [PagesController::class, 'listing'])->name('listing');
-Route::get('/empresa/{company:slug}', [PagesController::class, 'viewCompany'])->name('listing.view');
+Route::get('/empresa/{city}/{company:slug}', [PagesController::class, 'viewCompany'])->name('listing.view');
 Route::get('/cadastro', [PagesController::class, 'register'])->name('register');
 Route::get('/contato', [PagesController::class, 'contact'])->name('contact');

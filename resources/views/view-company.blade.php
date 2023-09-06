@@ -57,15 +57,15 @@
                                 aria-labelledby="tab-A">
                                 <div class="card-header" role="tab" id="heading-A">
                                     <h5>
-                                        <a class="collapsed" data-bs-toggle="collapse" href="#collapse-A"
+                                        <a data-bs-toggle="collapse" href="#collapse-A"
                                             aria-expanded="true" aria-controls="collapse-A">
                                             Informações
                                         </a>
                                     </h5>
                                 </div>
-                                <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
+                                <div id="collapse-A" class="collapse show" role="tabpanel" aria-labelledby="heading-A">
                                     <div class="card-body info_content">
-                                        <h2>Empresa em Cidade</h2>
+                                        <h2>{{ "{$company->name} em {$company->city}/{$company->state}" }}</h2>
                                         <div class="add_bottom_45"></div>
                                         <h2>Galeria de Fotos</h2>
                                         <div class="pictures magnific-gallery clearfix">

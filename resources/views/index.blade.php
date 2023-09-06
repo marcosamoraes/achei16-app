@@ -54,7 +54,7 @@
                             <figure>
                                 <img src="{{ env('PAINEL_URL') }}/storage/{{ $newCompany->image }}" data-src="{{ env('PAINEL_URL') }}/storage/{{ $newCompany->image }}" class="owl-lazy"
                                     alt="">
-                                <a href="/empresa/{{ $newCompany->slug }}" class="strip_info">
+                                <a href="/empresa/{{ str()->slug($newCompany->city) }}/{{ $newCompany->slug }}" class="strip_info">
                                     <small>{{ $newCompany->categories[0]->name }}</small>
                                     <div class="item_title">
                                         <h3>{{ $newCompany->name }}</h3>
@@ -127,7 +127,7 @@
                                         @break
                                     @endif
                                     <li>
-                                        <a href="/empresa/{{ $featuredCompany->slug }}">
+                                        <a href="/empresa/{{ str()->slug($featuredCompany->city) }}/{{ $featuredCompany->slug }}">
                                             <figure>
                                                 <img src="img/lazy-placeholder.png" data-src="{{ env('PAINEL_URL') }}/storage/{{ $featuredCompany->image }}" alt="" class="lazy">
                                             </figure>

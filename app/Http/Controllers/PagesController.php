@@ -70,7 +70,7 @@ class PagesController extends Controller
         return view('listing', compact('categories', 'companies'));
     }
 
-    public function viewCompany(Request $request, Company $company)
+    public function viewCompany(Request $request, string $city, Company $company)
     {
         return view('view-company', compact('company'));
     }

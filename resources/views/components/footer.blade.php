@@ -6,7 +6,7 @@
                 <div class="collapse dont-collapse-sm links" id="collapse_1">
                     <ul>
                         @foreach ($footerCompanies as $footerCompany)
-                            <li><a href="/empresa/{{ $footerCompany->slug }}">{{ $footerCompany->name }}</a></li>
+                            <li><a href="/empresa/{{ str()->slug($footerCompany->city) }}/{{ $footerCompany->slug }}">{{ $footerCompany->name }}</a></li>
                         @endforeach
                         <li><a href="/empresas"><b>Ver mais</b></a></li>
                     </ul>
