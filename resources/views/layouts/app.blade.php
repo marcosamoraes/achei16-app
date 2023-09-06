@@ -13,6 +13,12 @@
 
     <title>{{ config('app.name', 'Achei 16') }} - @yield('title')</title>
 
+    @hasSection('image')
+        <meta property="og:image" content="@yield('image')">
+    @else
+        <meta property="og:image" content="/img/logo.png">
+    @endif
+
     <!-- Favicons-->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="favicon.ico">

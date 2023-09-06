@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Ribeirão Preto - Restaurante, hotel, bares, lojas, oficina, som e muito mais...')
+@section('title', "{$company->name} - {$company->city}/{$company->state} - {$company->categories[0]->name}")
+
+@section('image', env('PAINEL_URL') . "/storage/{$company->image}")
 
 @section('content')
     <main>
