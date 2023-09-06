@@ -14,13 +14,13 @@
     <title>{{ config('app.name', 'Achei 16') }} - @yield('title')</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="favicon.ico">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
-        href="img/apple-touch-icon-114x114-precomposed.png">
+        href="favicon.ico">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
-        href="img/apple-touch-icon-144x144-precomposed.png">
+        href="favicon.ico">
 
     <!-- GOOGLE WEB FONT -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -45,7 +45,7 @@
     <div id="toTop"></div><!-- Back to top button -->
 
     <div class="layer"></div><!-- Opacity Mask Menu Mobile -->
-	
+
 	<!-- COMMON SCRIPTS -->
     <script src="/js/common_scripts.min.js"></script>
     <script src="/js/common_func.js"></script>
