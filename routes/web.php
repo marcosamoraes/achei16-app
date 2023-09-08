@@ -20,3 +20,4 @@ Route::get('/empresa/{city}/{company:slug}', [PagesController::class, 'viewCompa
 Route::post('/empresa/{company:slug}/contato', [PagesController::class, 'contactCompany'])->name('company.contact');
 Route::get('/cadastro', [PagesController::class, 'register'])->name('register');
 Route::get('/contato', [PagesController::class, 'contact'])->name('contact');
+Route::post('/contato', [PagesController::class, 'storeContact'])->name('contact.store');

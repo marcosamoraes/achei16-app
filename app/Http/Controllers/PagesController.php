@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Contact;
@@ -29,6 +30,11 @@ class PagesController extends Controller
 
     public function index()
     {
+        $banners = Banner::where('status', true)
+            ->inRandomOrder()
+            ->take(2)
+            ->get();
+
         $categories = Category::where('status', true)
             ->withCount('companies')
             ->get();
@@ -46,7 +52,7 @@ class PagesController extends Controller
         $newCompanies->each(fn ($company) => $company->update(['visits' => $company->visits + 1]));
         $featuredCompanies->each(fn ($company) => $company->update(['visits' => $company->visits + 1]));
 
-        return view('index', compact('categories', 'newCompanies', 'featuredCompanies'));
+        return view('index', compact('banners', 'categories', 'newCompanies', 'featuredCompanies'));
     }
 
     public function listing(Request $request)
@@ -107,5 +113,19 @@ class PagesController extends Controller
     public function contact()
     {
         return view('contact');
+    }
+
+    public function storeContact(Request $request)
+    {
+        Contact::create([
+            'name'          => $request->name,
+            'email'         => $request->email,
+            'whatsapp'      => $request->whatsapp,
+            'city'          => $request->city,
+            'message'       => $request->message ?? 'Empresa interessada em anunciar.',
+        ]);
+
+        Alert::toast('Contato enviado com sucesso, em breve o responsável entrará em contato.', 'success');
+        return back();
     }
 }

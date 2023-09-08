@@ -15,19 +15,26 @@
                         </div>
                         <!-- /head -->
                         <div class="main">
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Nome Completo">
-                                <i class="icon_pencil"></i>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="E-mail">
-                                <i class="icon_mail"></i>
-                            </div>
-                            <div class="form-group add_bottom_15">
-                                <input class="form-control" placeholder="Celular">
-                                <i class="icon_phone"></i>
-                            </div>
-                            <a href="confirm.html" class="btn_1 full-width mb_5">Cadastrar</a>
+                            <form method="POST" action="{{ route('contact.store') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <input class="form-control" name="name" placeholder="Nome Completo">
+                                    <i class="icon_pencil"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="email" name="email" placeholder="E-mail">
+                                    <i class="icon_mail"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" name="whatsapp" placeholder="Whatsapp">
+                                    <i class="icon_phone"></i>
+                                </div>
+                                <div class="form-group add_bottom_15">
+                                    <input class="form-control" name="city" placeholder="Cidade">
+                                    <i class="icon_pin"></i>
+                                </div>
+                                <button type="submit" class="btn_1 full-width mb_5">Cadastrar</button>
+                            </form>
                         </div>
                     </div>
                     <!-- /box_booking -->
@@ -43,4 +50,6 @@
 @push('scripts')
     <!-- SPECIFIC CSS -->
     <link href="css/booking-sign_up.css" rel="stylesheet">
+    <script src="/js/jquery.mask.min.js"></script>
+    <script src="/js/custom.js"></script>
 @endpush

@@ -3,6 +3,9 @@
 @section('title', "{$company->name} - {$company->city}/{$company->state} - {$company->categories[0]->name}")
 
 @section('image', env('PAINEL_URL') . "/storage/{$company->image}")
+@section('description', $company->description)
+@section('abstract', $company->tags->pluck('name')->implode(','))
+@section('keywords', $company->tags->pluck('name')->implode(','))
 
 @section('content')
     <main>
@@ -18,7 +21,7 @@
                             </ul>
                         </div>
                         <div class="title">
-                            <h1>{{ $company->name }} {!! $company->opening_24h ? '<span class="badge rounded-pill bg-danger" style="font-size: 12px">ABERTO 24H</span>' : false !!}</h1>
+                            <h1>{{ $company->name }} {!! $company->opening_24h ? '<span class="badge bg-danger" style="font-size: 8px">ABERTO 24H</span>' : false !!}</h1>
                             {{ "{$company->city}/{$company->state}" }} - <a
                                 href="https://www.google.com/maps/place/{{ $company->fullAddress }}"
                                 target="blank">Ver localização</a>

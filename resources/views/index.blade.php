@@ -91,26 +91,29 @@
             </div>
 
             <div class="container margin_60_40">
-                <div class="row">
-                    <div class="col-12 col-lg-6">
-                        <div class="banner lazy" data-bg="url(img/banner_bg_desktop.jpg)">
-                            <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.2)">
-                                {{-- banner divulgação --}}
+                @if ($banners)
+                    <div class="row">
+                        @foreach ($banners as $banner)
+                            <div class="col-12 col-lg-6">
+                                <a href="{{ $banner->link ? str()->startsWith($banner->link, 'http') ? $banner->link : 'https://' . $banner->link : '#' }}" target="_blank">
+                                    <div class="banner lazy" data-bg="url({{ env('PAINEL_URL') . '/storage/' . $banner->image }})">
+                                        <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.2)">
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                            <!-- /wrapper -->
-                        </div>
-                        <!-- /banner -->
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="banner lazy" data-bg="url(img/banner_bg_desktop.jpg)">
-                            <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.2)">
-                                {{-- banner divulgação --}}
+                        @endforeach
+
+                        @if ($banner->count() === 1)
+                            <div class="col-12 col-lg-6">
+                                <div class="banner lazy" data-bg="url(img/banner_bg_desktop.jpg)">
+                                    <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.2)">
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /wrapper -->
-                        </div>
-                        <!-- /banner -->
+                        @endif
                     </div>
-                </div>
+                @endif
 
                 <div class="row">
                     <div class="col-12">

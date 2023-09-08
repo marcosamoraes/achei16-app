@@ -5,13 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Guia de empresas em Ribeirão Preto/SP - http://www.achei16.com.br">
-    <meta name="abstract" content="guia, hotel, restaurante, empresas em Ribeirão Preto/SP.">
-    <meta name="keywords"
-        content="hotel em Ribeirão Preto, achei 16, restaurante, academia, veículos, bar, som automotivo, restaurante em ribeirão preto, cinema, o que fazer em Ribeirão Preto, lojas,  ">
-    <meta name="author" content="Marcos Moraes - http://www.marcosamoraes.com">
+    <meta name="author" content="Achei16">
 
     <title>{{ config('app.name', 'Achei 16') }} - @yield('title')</title>
+
+    @hasSection('description')
+        <meta name="description" content="@yield('description')">
+    @else
+        <meta name="description" content="Guia de empresas em Ribeirão Preto/SP - http://www.achei16.com.br">
+    @endif
+
+    @hasSection('abstract')
+        <meta name="abstract" content="@yield('abstract')">
+    @else
+        <meta name="abstract" content="guia, hotel, restaurante, empresas em Ribeirão Preto/SP.">
+    @endif
+
+    @hasSection('keywords')
+        <meta name="keywords" content="@yield('keywords')">
+    @else
+        <meta name="keywords" content="hotel em Ribeirão Preto, achei 16, restaurante, academia, veículos, bar, som automotivo, restaurante em ribeirão preto, cinema, o que fazer em Ribeirão Preto, lojas,  ">
+    @endif
 
     @hasSection('image')
         <meta property="og:image" content="@yield('image')">

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Contact extends Model
+class Banner extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -17,19 +17,13 @@ class Contact extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
-        'name',
-        'email',
-        'whatsapp',
-        'city',
-        'message',
+        'image',
+        'link',
+        'status'
     ];
 
-    /**
-     * Get the user that register the company.
-     */
-    public function user()
+    protected function imageUrl(): Attribute
     {
-        return $this->belongsTo(User::class);
+        return Attribute::get(fn () => $this->image ? asset('storage/' . $this->image) : null);
     }
 }
