@@ -104,7 +104,7 @@
                             </div>
                         @endforeach
 
-                        @if ($banner->count() === 1)
+                        @if ($banners->count() === 1)
                             <div class="col-12 col-lg-6">
                                 <div class="banner lazy" data-bg="url(img/banner_bg_desktop.jpg)">
                                     <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.2)">
