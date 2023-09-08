@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Company;
+use App\Models\Contact;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PagesController extends Controller
 {
@@ -41,6 +43,9 @@ class PagesController extends Controller
             ->take(10)
             ->get();
 
+        $newCompanies->each(fn ($company) => $company->update(['visits' => $company->visits + 1]));
+        $featuredCompanies->each(fn ($company) => $company->update(['visits' => $company->visits + 1]));
+
         return view('index', compact('categories', 'newCompanies', 'featuredCompanies'));
     }
 
@@ -67,12 +72,31 @@ class PagesController extends Controller
             ->paginate(15)
             ->withQueryString();
 
+        $companies->each(fn ($company) => $company->update(['visits' => $company->visits + 1]));
+
         return view('listing', compact('categories', 'companies'));
     }
 
     public function viewCompany(Request $request, string $city, Company $company)
     {
+        $company->update(['visits' => $company->visits + 1]);
         return view('view-company', compact('company'));
+    }
+
+    public function contactCompany(Request $request, Company $company)
+    {
+        $user = $company->client->user;
+
+        Contact::create([
+            'user_id'       => $user->id,
+            'name'          => $request->name,
+            'email'         => $request->email,
+            'whatsapp'      => $request->whatsapp,
+            'message'       => $request->message,
+        ]);
+
+        Alert::toast('Contato enviado com sucesso, em breve o responsável entrará em contato.', 'success');
+        return back();
     }
 
     public function register()

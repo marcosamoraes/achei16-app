@@ -18,7 +18,7 @@
                             </ul>
                         </div>
                         <div class="title">
-                            <h1>{{ $company->name }}</h1>
+                            <h1>{{ $company->name }} {!! $company->opening_24h ? '- <span class="badge bg-danger">ABERTO 24H</span>' : false !!}</h1>
                             {{ "{$company->city}/{$company->state}" }} - <a
                                 href="https://www.google.com/maps/place/{{ $company->fullAddress }}"
                                 target="blank">Ver localização</a>
@@ -68,6 +68,7 @@
                                 <div id="collapse-A" class="collapse show" role="tabpanel" aria-labelledby="heading-A">
                                     <div class="card-body info_content">
                                         <h2>{{ "{$company->name} em {$company->city}/{$company->state}" }}</h2>
+                                        <p>{{ $company->description }}</p>
                                         <div class="add_bottom_45"></div>
                                         <h2>Galeria de Fotos</h2>
                                         <div class="pictures magnific-gallery clearfix">
@@ -90,22 +91,50 @@
                                                             target="blank"><strong>Ver localização</strong></a></p>
                                                     <strong>Nos siga nas redes sociais</strong><br>
                                                     <p class="follow_us_detail">
-                                                        <a href="#0"><i class="social_facebook_square" style="color: #1877f2"></i></a>
-                                                        <a href="#0"><i class="social_instagram_square" style="color: #c13584"></i></a>
-                                                        <a href="#0"><i class="social_twitter_square" style="color: #1da1f2"></i></a>
+                                                        @if ($company->facebook)
+                                                            <a target="_blank" href="{{ str()->startsWith($company->facebook, 'http') ? $company->facebook : 'https://' . $company->facebook }}">
+                                                                <i class="fa-brands fa-square-facebook" style="color: #1877f2"></i>
+                                                            </a>
+                                                        @endif
+                                                        @if ($company->instagram)
+                                                            <a target="_blank" href="{{ str()->startsWith($company->instagram, 'http') ? $company->instagram : 'https://' . $company->instagram }}">
+                                                                <i class="fa-brands fa-square-instagram" style="color: #c32aa3"></i>
+                                                            </a>
+                                                        @endif
+                                                        @if ($company->youtube)
+                                                            <a target="_blank" href="{{ str()->startsWith($company->youtube, 'http') ? $company->youtube : 'https://' . $company->youtube }}">
+                                                                <i class="fa-brands fa-square-youtube" style="color: #ff0000"></i>
+                                                            </a>
+                                                        @endif
+                                                        @if ($company->google_my_business)
+                                                            <a target="_blank" href="{{ str()->startsWith($company->google_my_business, 'http') ? $company->google_my_business : 'https://' . $company->google_my_business }}">
+                                                                <i class="fa-brands fa-google-plus" style="color: #db4437"></i>
+                                                            </a>
+                                                        @endif
+                                                        @if ($company->waze)
+                                                            <a target="_blank" href="{{ str()->startsWith($company->waze, 'http') ? $company->waze : 'https://' . $company->waze }}">
+                                                                <i class="fa-brands fa-waze" style="color: #0072c6"></i>
+                                                            </a>
+                                                        @endif
+                                                        @if ($company->ifood)
+                                                            <a target="_blank" href="{{ str()->startsWith($company->ifood, 'http') ? $company->ifood : 'https://' . $company->ifood }}">
+                                                                <img src="/img/ifood.png" height="20" alt="">
+                                                            </a>
+                                                        @endif
+                                                        @if ($company->olx)
+                                                            <a target="_blank" href="{{ str()->startsWith($company->olx, 'http') ? $company->olx : 'https://' . $company->olx }}">
+                                                                <img src="/img/olx.png" height="20" alt="">
+                                                            </a>
+                                                        @endif
                                                     </p>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <h3>Opening Time</h3>
-                                                    <p><strong>Lunch</strong><br> Mon. to Sat. 11.00am - 3.00pm
-                                                    <p>
-                                                    <p><strong>Dinner</strong><br> Mon. to Sat. 6.00pm- 1.00am</p>
-                                                    <p><span class="loc_closed">Sunday Closed</span></p>
+                                                    <h3>Horário de Funcionamento</h3>
+                                                    <p>{{ $company->opening_hours }}</p>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <h3>Services</h3>
-                                                    <p><strong>Credit Cards</strong><br> Mastercard, Visa, Amex</p>
-                                                    <p><strong>Other</strong><br> Wifi, Parking, Wheelchair Accessible</p>
+                                                    <h3>Métodos de Pagamento</h3>
+                                                    <p>{{ $company->payment_methods }}</p>
                                                 </div>
                                             </div>
                                             <!-- /row -->
@@ -327,24 +356,22 @@
                         </div>
                         <!-- /head -->
                         <div class="main">
-                            <div id="message-detail-contact"></div>
-                            <form method="post" action="#" id="detail_contact" autocomplete="off">
-                                <input type="text" name="restaurant_name" id="restaurant_name"
-                                    value="Pizzeria Da Aldredo" hidden="hidden">
+                            <form method="post" action="{{ route('company.contact', ['company' => $company->slug]) }}" autocomplete="off">
+                                @csrf
                                 <div class="form-group">
-                                    <input type="text" name="name_detail_contact" id="name_detail_contact"
+                                    <input type="text" name="name" id="name"
                                         class="form-control" placeholder="Nome Completo">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email_detail_contact" id="email_detail_contact"
+                                    <input type="email" name="email" id="email"
                                         class="form-control" placeholder="E-mail">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="telephone_detail_contact" id="telephone_detail_contact"
+                                    <input type="text" name="whatsapp" id="whatsapp"
                                         class="form-control" placeholder="Celular">
                                 </div>
                                 <div class="form-group add_bottom_15">
-                                    <textarea class="form-control" name="message_detail" id="message_detail" placeholder="Mensagem"></textarea>
+                                    <textarea class="form-control" name="message" id="message" placeholder="Mensagem"></textarea>
                                 </div>
                                 <div class="btn_1_mobile" style="position: relative;">
                                     <input class="btn_3 full-width" type="submit" value="Enviar mensagem"
@@ -356,19 +383,18 @@
                     <!-- /box_booking -->
                     <div class="btn_reserve_fixed"><a href="#0" class="btn_3 full-width">Enviar mensagem</a></div>
 
-                    <a href="https://wa.me/9999999999" class="btn_2 full-width" target="_blank" style="margin-bottom: 20px">
+                    <a href="tel:{{ preg_replace('/\D/', '', $company->phone) }}" class="btn_2 full-width" target="_blank" style="margin-bottom: 20px">
                         <i class="icon_phone"></i>
-                        (99) 99999-9999
+                        {{ $company->phone }}
                     </a>
-                    <a href="https://wa.me/9999999999" class="btn_1 full-width" target="_blank" style="margin-bottom: 20px">
-                        <i class="fa fa-icon-whatsapp"></i>
-                        (99) 99999-9999
+                    <a href="https://wa.me/{{ preg_replace('/\D/', '', $company->phone2 ?? $company->phone) }}?text=Olá, vim através do Achei16." class="btn_1 full-width" target="_blank" style="margin-bottom: 20px">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        {{ $company->phone2 ?? $company->phone }}
                     </a>
 
                     <ul class="share-buttons">
-                        <li><a class="fb-share" href="#0"><i class="social_facebook"></i> Compartilhar</a></li>
-                        <li><a class="twitter-share" href="#0"><i class="social_twitter"></i> Compartilhar</a></li>
-                        <li><a class="gplus-share" href="#0"><i class="social_googleplus"></i> Compartilhar</a></li>
+                        <li><a class="fb-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"><i class="social_facebook"></i> Compartilhar</a></li>
+                        <li><a class="twitter-share" target="_blank" href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode('Confira esta empresa no Achei16: ' . $company->name) }}"><i class="social_twitter"></i> Compartilhar</a></li>
                     </ul>
                 </div>
 
@@ -384,9 +410,10 @@
 @push('scripts')
     <!-- SPECIFIC CSS -->
     <link href="/css/detail-page.css" rel="stylesheet">
-    <link href="/revolution-slider/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
-
+    <script src="https://kit.fontawesome.com/411831a5a4.js" crossorigin="anonymous"></script>
     <!-- SPECIFIC SCRIPTS -->
     <script src="/js/sticky_sidebar.min.js"></script>
     <script src="/js/specific_detail.js"></script>
-@endpush
+    <script src="/js/jquery.mask.min.js"></script>
+    <script src="/js/custom.js"></script>
+    @endpush

@@ -42,6 +42,8 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
+
     @include('components.header')
 
     @yield('content')
