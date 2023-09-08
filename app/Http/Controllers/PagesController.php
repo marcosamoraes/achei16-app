@@ -13,14 +13,14 @@ class PagesController extends Controller
 {
     public function __construct()
     {
-        $footerCities = Company::where('status', true)
+        $footerCities = Company::approved()
             ->distinct()
             ->take(5)
             ->inRandomOrder()
             ->pluck('city')
             ->toArray();
 
-        $footerCompanies = Company::where('status', true)
+        $footerCompanies = Company::approved()
             ->take(5)
             ->inRandomOrder()
             ->get();
@@ -39,12 +39,12 @@ class PagesController extends Controller
             ->withCount('companies')
             ->get();
 
-        $newCompanies = Company::where('status', true)
+        $newCompanies = Company::approved()
             ->latest()
             ->take(8)
             ->get();
 
-        $featuredCompanies = Company::where('status', true)
+        $featuredCompanies = Company::approved()
             ->where('featured', true)
             ->take(10)
             ->get();
@@ -61,7 +61,7 @@ class PagesController extends Controller
             ->withCount('companies')
             ->get();
 
-        $companies = Company::where('status', true)
+        $companies = Company::approved()
             ->when($request->has('cat'), function ($query) {
                 $query->whereHas('categories', function ($query) {
                     $query->whereIn('category_id', (array) request()->cat);

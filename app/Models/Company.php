@@ -132,4 +132,24 @@ class Company extends Model
     {
         return $this->belongsToMany(Tag::class, 'company_tags');
     }
+
+    /**
+     * Get the orders for the company.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Query build to return only companies with status = true and with an order not expired with status = approved.
+     */
+    public function scopeApproved($query)
+    {
+        return $query->where('status', true)
+            ->whereHas('orders', function ($query) {
+                $query->where('status', 'approved')
+                    ->where('expire_at', '>', now());
+            });
+    }
 }
