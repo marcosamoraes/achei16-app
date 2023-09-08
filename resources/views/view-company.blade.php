@@ -135,6 +135,14 @@
                                                 <div class="col-md-4">
                                                     <h3>Métodos de Pagamento</h3>
                                                     <p>{{ $company->payment_methods }}</p>
+                                                    @if ($company->email)
+                                                        <strong>E-mail</strong><br>
+                                                        <p><a target="_blank" href="mailto:{{ $company->email }}">{{ $company->email }}</a></p>
+                                                    @endif
+                                                    @if ($company->site)
+                                                        <strong>Site</strong><br>
+                                                        <p><a target="_blank" href="{{ str()->startsWith($company->site, 'http') ? $company->site : 'https://' . $company->site }}">{{ $company->site }}</a></p>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <!-- /row -->
