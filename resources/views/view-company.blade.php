@@ -8,7 +8,7 @@
     <main>
         <div class="container margin_detail">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     <div class="detail_page_head clearfix">
                         <div class="breadcrumbs">
                             <ul>
@@ -18,7 +18,7 @@
                             </ul>
                         </div>
                         <div class="title">
-                            <h1>{{ $company->name }} {!! $company->opening_24h ? '- <span class="badge bg-danger">ABERTO 24H</span>' : false !!}</h1>
+                            <h1>{{ $company->name }} {!! $company->opening_24h ? '<span class="badge rounded-pill bg-danger" style="font-size: 12px">ABERTO 24H</span>' : false !!}</h1>
                             {{ "{$company->city}/{$company->state}" }} - <a
                                 href="https://www.google.com/maps/place/{{ $company->fullAddress }}"
                                 target="blank">Ver localização</a>
@@ -35,9 +35,10 @@
                     <!-- /detail_page_head -->
 
                     <div class="owl-carousel owl-theme carousel_1 magnific-gallery">
-                        <div class="item">
-                            <a href="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" title="Photo title" data-effect="mfp-zoom-in"><img
-                                    src="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" alt=""></a>
+                        <div class="item" style="border:1px solid black; display: flex; justify-content: center; align-items: center">
+                            <a href="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" class="w-50" title="Photo title" data-effect="mfp-zoom-in">
+                                <img src="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" alt="">
+                            </a>
                         </div>
                     </div>
                     <!-- /carousel -->
@@ -356,7 +357,7 @@
                 </div>
                 <!-- /col -->
 
-                <div class="col-lg-4" id="sidebar_fixed">
+                <div class="col-lg-5" id="sidebar_fixed">
                     <div class="box_booking mobile_fixed">
                         <div class="head">
                             <h3>Entre em Contato</h3>
