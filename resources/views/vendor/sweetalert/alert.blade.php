@@ -36,4 +36,10 @@
             Swal.fire({!! Session::pull('alert.config') !!});
         @endif
     </script>
+
+    <style>
+        .swal2-container {
+            z-index: 9999999999 !important;
+        }
+    </style>
 @endif

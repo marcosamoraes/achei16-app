@@ -21,7 +21,7 @@
 									</div>
 									<div class="col-lg-4 custom_select">
 										<select class="wide" name="cat">
-											<option>Categorias</option>
+											<option value='' readonly>Categorias</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach

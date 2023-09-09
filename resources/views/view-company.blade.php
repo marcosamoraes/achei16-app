@@ -25,11 +25,13 @@
                             {{ "{$company->city}/{$company->state}" }} - <a
                                 href="https://www.google.com/maps/place/{{ $company->fullAddress }}"
                                 target="blank">Ver localização</a>
-                            <ul class="tags">
-                                @foreach ($company->tags as $tag)
-                                    <li><a href="#0" class="text-capitalize">{{ $tag->name }}</a></li>
-                                @endforeach
-                            </ul>
+                                <ul class="tags">
+                                    <li>Tags:</li>
+                                    @foreach ($company->tags as $tag)
+                                        <li><a href="#0" class="text-capitalize">{{ $tag->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </p>
                         </div>
                         {{-- <div class="rating">
                             <div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div>
@@ -93,44 +95,46 @@
                                                     <p>{{ $company->fullAddress }}<br><a
                                                             href="https://www.google.com/maps/place/{{ $company->fullAddress }}"
                                                             target="blank"><strong>Ver localização</strong></a></p>
-                                                    <strong>Nos siga nas redes sociais</strong><br>
-                                                    <p class="follow_us_detail">
-                                                        @if ($company->facebook)
-                                                            <a target="_blank" href="{{ str()->startsWith($company->facebook, 'http') ? $company->facebook : 'https://' . $company->facebook }}">
-                                                                <i class="fa-brands fa-square-facebook" style="color: #1877f2"></i>
-                                                            </a>
-                                                        @endif
-                                                        @if ($company->instagram)
-                                                            <a target="_blank" href="{{ str()->startsWith($company->instagram, 'http') ? $company->instagram : 'https://' . $company->instagram }}">
-                                                                <i class="fa-brands fa-square-instagram" style="color: #c32aa3"></i>
-                                                            </a>
-                                                        @endif
-                                                        @if ($company->youtube)
-                                                            <a target="_blank" href="{{ str()->startsWith($company->youtube, 'http') ? $company->youtube : 'https://' . $company->youtube }}">
-                                                                <i class="fa-brands fa-square-youtube" style="color: #ff0000"></i>
-                                                            </a>
-                                                        @endif
-                                                        @if ($company->google_my_business)
-                                                            <a target="_blank" href="{{ str()->startsWith($company->google_my_business, 'http') ? $company->google_my_business : 'https://' . $company->google_my_business }}">
-                                                                <i class="fa-brands fa-google-plus" style="color: #db4437"></i>
-                                                            </a>
-                                                        @endif
-                                                        @if ($company->waze)
-                                                            <a target="_blank" href="{{ str()->startsWith($company->waze, 'http') ? $company->waze : 'https://' . $company->waze }}">
-                                                                <i class="fa-brands fa-waze" style="color: #0072c6"></i>
-                                                            </a>
-                                                        @endif
-                                                        @if ($company->ifood)
-                                                            <a target="_blank" href="{{ str()->startsWith($company->ifood, 'http') ? $company->ifood : 'https://' . $company->ifood }}">
-                                                                <img src="/img/ifood.png" height="20" alt="">
-                                                            </a>
-                                                        @endif
-                                                        @if ($company->olx)
-                                                            <a target="_blank" href="{{ str()->startsWith($company->olx, 'http') ? $company->olx : 'https://' . $company->olx }}">
-                                                                <img src="/img/olx.png" height="20" alt="">
-                                                            </a>
-                                                        @endif
-                                                    </p>
+                                                    @if ($company->facebook || $company->instagram || $company->youtube || $company->google_my_business || $company->waze || $company->ifood || $company->olx)
+                                                        <strong>Nos siga nas redes sociais</strong><br>
+                                                        <p class="follow_us_detail">
+                                                            @if ($company->facebook)
+                                                                <a target="_blank" href="{{ str()->startsWith($company->facebook, 'http') ? $company->facebook : 'https://' . $company->facebook }}">
+                                                                    <i class="fa-brands fa-square-facebook" style="color: #1877f2"></i>
+                                                                </a>
+                                                            @endif
+                                                            @if ($company->instagram)
+                                                                <a target="_blank" href="{{ str()->startsWith($company->instagram, 'http') ? $company->instagram : 'https://' . $company->instagram }}">
+                                                                    <i class="fa-brands fa-square-instagram" style="color: #c32aa3"></i>
+                                                                </a>
+                                                            @endif
+                                                            @if ($company->youtube)
+                                                                <a target="_blank" href="{{ str()->startsWith($company->youtube, 'http') ? $company->youtube : 'https://' . $company->youtube }}">
+                                                                    <i class="fa-brands fa-square-youtube" style="color: #ff0000"></i>
+                                                                </a>
+                                                            @endif
+                                                            @if ($company->google_my_business)
+                                                                <a target="_blank" href="{{ str()->startsWith($company->google_my_business, 'http') ? $company->google_my_business : 'https://' . $company->google_my_business }}">
+                                                                    <i class="fa-brands fa-google-plus" style="color: #db4437"></i>
+                                                                </a>
+                                                            @endif
+                                                            @if ($company->waze)
+                                                                <a target="_blank" href="{{ str()->startsWith($company->waze, 'http') ? $company->waze : 'https://' . $company->waze }}">
+                                                                    <i class="fa-brands fa-waze" style="color: #0072c6"></i>
+                                                                </a>
+                                                            @endif
+                                                            @if ($company->ifood)
+                                                                <a target="_blank" href="{{ str()->startsWith($company->ifood, 'http') ? $company->ifood : 'https://' . $company->ifood }}">
+                                                                    <img src="/img/ifood.png" height="20" alt="">
+                                                                </a>
+                                                            @endif
+                                                            @if ($company->olx)
+                                                                <a target="_blank" href="{{ str()->startsWith($company->olx, 'http') ? $company->olx : 'https://' . $company->olx }}">
+                                                                    <img src="/img/olx.png" height="20" alt="">
+                                                                </a>
+                                                            @endif
+                                                        </p>
+                                                    @endif
                                                 </div>
                                                 <div class="col-md-4">
                                                     <h3>Horário de Funcionamento</h3>
@@ -399,7 +403,7 @@
                         <i class="icon_phone"></i>
                         {{ $company->phone }}
                     </a>
-                    <a href="https://wa.me/{{ preg_replace('/\D/', '', $company->phone2 ?? $company->phone) }}?text=Olá, vim através do Achei16." class="btn_1 full-width" target="_blank" style="margin-bottom: 20px">
+                    <a href="https://wa.me/+55{{ preg_replace('/\D/', '', $company->phone2 ?? $company->phone) }}?text=Olá, vim através do Achei16." class="btn_1 full-width" target="_blank" style="margin-bottom: 20px">
                         <i class="fa-brands fa-whatsapp"></i>
                         {{ $company->phone2 ?? $company->phone }}
                     </a>

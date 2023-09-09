@@ -63,17 +63,18 @@ class PagesController extends Controller
             ->get();
 
         $companies = Company::approved()
-            ->when($request->has('cat'), function ($query) {
+            ->when($request->filled('cat'), function ($query) {
                 $query->whereHas('categories', function ($query) {
                     $query->whereIn('category_id', (array) request()->cat);
                 });
             })
-            ->when($request->has('city'), function ($query) {
+            ->when($request->filled('city'), function ($query) {
                 $query->where(function ($query) {
-                    $query->orWhere('address', 'like', '%' . request()->city . '%')
-                        ->orWhere('neighborhood', 'like', '%' . request()->city . '%')
-                        ->orWhere('city', 'like', '%' . request()->city . '%')
-                        ->orWhere('state', 'like', '%' . request()->city . '%');
+                    $query->orWhere('name', 'like', '%' . request()->city . '%');
+                    $query->orWhere('address', 'like', '%' . request()->city . '%');
+                    $query->orWhere('neighborhood', 'like', '%' . request()->city . '%');
+                    $query->orWhere('city', 'like', '%' . request()->city . '%');
+                    $query->orWhere('state', 'like', '%' . request()->city . '%');
                 });
             })
             ->paginate(15)
