@@ -51,6 +51,7 @@ class PagesController extends Controller
 
         $newCompanies->each(fn ($company) => $company->update(['visits' => $company->visits + 1]));
         $featuredCompanies->each(fn ($company) => $company->update(['visits' => $company->visits + 1]));
+        $banners->each(fn ($banner) => $banner->update(['views' => $banner->views + 1]));
 
         return view('index', compact('banners', 'categories', 'newCompanies', 'featuredCompanies'));
     }
