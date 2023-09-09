@@ -85,6 +85,11 @@ class PagesController extends Controller
 
     public function viewCompany(Request $request, string $city, Company $company)
     {
+        if (!$company->status || !$company->is_approved) {
+            Alert::toast('Empresa não encontrada.', 'error');
+            return redirect()->route('index');
+        }
+
         $company->update(['visits' => $company->visits + 1]);
         return view('view-company', compact('company'));
     }

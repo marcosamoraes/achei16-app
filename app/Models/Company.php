@@ -71,6 +71,7 @@ class Company extends Model
         'image_url',
         'images_url',
         'full_address',
+        'is_approved',
     ];
 
     public static function boot()
@@ -151,5 +152,13 @@ class Company extends Model
                 $query->where('status', 'approved')
                     ->where('expire_at', '>', now());
             });
+    }
+
+    /**
+     * Attribute to return if the company is approved
+     */
+    public function isApproved(): Attribute
+    {
+        return Attribute::get(fn () => $this->orders()->where('status', 'approved')->where('expire_at', '>', now())->exists());
     }
 }
