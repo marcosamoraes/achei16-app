@@ -42,6 +42,29 @@
         <!-- /hero_single -->
 
         <div class="container margin_60_40">
+            @if ($banners)
+                <div class="row">
+                    @foreach ($banners as $banner)
+                        <div class="col-12 col-lg-6">
+                            <a href="{{ $banner->link ? str()->startsWith($banner->link, 'http') ? $banner->link : 'https://' . $banner->link : '#' }}" target="_blank">
+                                <div class="banner lazy" data-bg="url({{ env('PAINEL_URL') . '/storage/' . $banner->image }})">
+                                    <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.2)">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+
+                    @if ($banners->count() === 1)
+                        <div class="col-12 col-lg-6">
+                            <div class="banner lazy" data-bg="url(img/banner_bg_desktop.jpg)">
+                                <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.2)">
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            @endif
             <div class="main_title">
                 <span><em></em></span>
                 <h2>Últimas empresas</h2>
@@ -91,29 +114,6 @@
             </div>
 
             <div class="container margin_60_40">
-                @if ($banners)
-                    <div class="row">
-                        @foreach ($banners as $banner)
-                            <div class="col-12 col-lg-6">
-                                <a href="{{ $banner->link ? str()->startsWith($banner->link, 'http') ? $banner->link : 'https://' . $banner->link : '#' }}" target="_blank">
-                                    <div class="banner lazy" data-bg="url({{ env('PAINEL_URL') . '/storage/' . $banner->image }})">
-                                        <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.2)">
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        @endforeach
-
-                        @if ($banners->count() === 1)
-                            <div class="col-12 col-lg-6">
-                                <div class="banner lazy" data-bg="url(img/banner_bg_desktop.jpg)">
-                                    <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.2)">
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                @endif
 
                 <div class="row">
                     <div class="col-12">
