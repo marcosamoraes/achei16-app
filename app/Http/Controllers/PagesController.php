@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Contact;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -94,6 +95,25 @@ class PagesController extends Controller
 
         $company->update(['visits' => $company->visits + 1]);
         return view('view-company', compact('company'));
+    }
+
+    public function reviewCompany(Request $request, Company $company)
+    {
+        return view('review-company', compact('company'));
+    }
+
+    public function storeReviewCompany(Request $request, Company $company)
+    {
+        Review::create([
+            'company_id'    => $company->id,
+            'name'          => $request->name,
+            'title'         => $request->title,
+            'message'       => $request->message,
+            'rating'        => $request->rating,
+        ]);
+
+        Alert::toast('Avaliação enviada com sucesso.', 'success');
+        return redirect(route('listing.view', [$company->city, $company->slug]));
     }
 
     public function contactCompany(Request $request, Company $company)

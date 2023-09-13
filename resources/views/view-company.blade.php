@@ -33,9 +33,11 @@
                                 </ul>
                             </p>
                         </div>
-                        {{-- <div class="rating">
-                            <div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div>
-                        </div> --}}
+                        @if ($company->rating)
+                            <div class="rating">
+                                <div class="score"><span><em>{{ $company->reviews()->count() }} Avaliações</em></span><strong>{{ number_format($company->rating, 1) }}</strong></div>
+                            </div>
+                        @endif
                     </div>
                     <!-- /detail_page_head -->
 
@@ -54,10 +56,10 @@
                                 <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab"
                                     role="tab">Informações</a>
                             </li>
-                            {{-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab"
                                     role="tab">Avaliações</a>
-                            </li> --}}
+                            </li>
                         </ul>
 
                         <div class="tab-content" role="tablist">
@@ -160,7 +162,7 @@
                             </div>
                             <!-- /tab -->
 
-                            {{-- <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+                            <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
                                 <div class="card-header" role="tab" id="heading-B">
                                     <h5>
                                         <a class="collapsed" data-bs-toggle="collapse" href="#collapse-B"
@@ -171,192 +173,39 @@
                                 </div>
                                 <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
                                     <div class="card-body reviews">
-                                        <div class="row add_bottom_45 d-flex align-items-center">
-                                            <div class="col-md-3">
-                                                <div id="review_summary">
-                                                    <strong>8.5</strong>
-                                                    <em>Superb</em>
-                                                    <small>Based on 4 reviews</small>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9 reviews_sum_details">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <h6>Food Quality</h6>
-                                                        <div class="row">
-                                                            <div class="col-xl-10 col-lg-9 col-9">
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        style="width: 90%" aria-valuenow="90"
-                                                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>9.0</strong></div>
-                                                        </div>
-                                                        <!-- /row -->
-                                                        <h6>Service</h6>
-                                                        <div class="row">
-                                                            <div class="col-xl-10 col-lg-9 col-9">
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        style="width: 95%" aria-valuenow="95"
-                                                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>9.5</strong></div>
-                                                        </div>
-                                                        <!-- /row -->
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h6>Location</h6>
-                                                        <div class="row">
-                                                            <div class="col-xl-10 col-lg-9 col-9">
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        style="width: 60%" aria-valuenow="60"
-                                                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>6.0</strong></div>
-                                                        </div>
-                                                        <!-- /row -->
-                                                        <h6>Price</h6>
-                                                        <div class="row">
-                                                            <div class="col-xl-10 col-lg-9 col-9">
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        style="width: 60%" aria-valuenow="60"
-                                                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>6.0</strong></div>
-                                                        </div>
-                                                        <!-- /row -->
-                                                    </div>
-                                                </div>
-                                                <!-- /row -->
-                                            </div>
-                                        </div>
 
                                         <div id="reviews">
-                                            <div class="review_card">
-                                                <div class="row">
-                                                    <div class="col-md-2 user_info">
-                                                        <figure><img src="/img/avatar4.jpg" alt=""></figure>
-                                                        <h5>Lukas</h5>
-                                                    </div>
-                                                    <div class="col-md-10 review_content">
-                                                        <div class="clearfix add_bottom_15">
-                                                            <span class="rating">8.5<small>/10</small> <strong>Rating
-                                                                    average</strong></span>
-                                                            <em>Published 54 minutes ago</em>
+                                            @if ($company->reviews()->count() > 0)
+                                                @foreach ($company->reviews as $review)
+                                                    <div class="review_card">
+                                                        <div class="row">
+                                                            <div class="col-md-2 user_info">
+                                                                <figure><img src="/img/avatar.jpg" alt=""></figure>
+                                                                <h5>{{ $review->name }}</h5>
+                                                            </div>
+                                                            <div class="col-md-10 review_content">
+                                                                <div class="clearfix add_bottom_15">
+                                                                    <span class="rating">{{ $review->rating }}<small>/10</small></span>
+                                                                    <em>Publicado {{ $review->created_at->diffForHumans() }}</em>
+                                                                </div>
+                                                                <h4>{{ $review->title }}</h4>
+                                                                <p>{{ $review->message }}</p>
+                                                            </div>
                                                         </div>
-                                                        <h4>"Great Location!!"</h4>
-                                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod
-                                                            scaevola sea. Et nec tantas accusamus salutatus, sit commodo
-                                                            veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius
-                                                            essent fuisset ut. Viderer petentium cu his. Tollit molestie
-                                                            suscipiantur his et.</p>
-                                                        <ul>
-                                                            <li><a href="#0"><i
-                                                                        class="icon_like"></i><span>Useful</span></a></li>
-                                                            <li><a href="#0"><i class="icon_dislike"></i><span>Not
-                                                                        useful</span></a></li>
-                                                            <li><a href="#0"><i class="arrow_back"></i>
-                                                                    <span>Reply</span></a></li>
-                                                        </ul>
+                                                        <!-- /row -->
                                                     </div>
+                                                @endforeach
+                                            @else
+                                                <div class="alert alert-warning" role="alert">
+                                                    Não há nenhuma avaliação para essa empresa ainda.
                                                 </div>
-                                                <!-- /row -->
-                                            </div>
-                                            <!-- /review_card -->
-                                            <div class="review_card">
-                                                <div class="row">
-                                                    <div class="col-md-2 user_info">
-                                                        <figure><img src="/img/avatar6.jpg" alt=""></figure>
-                                                        <h5>Lukas</h5>
-                                                    </div>
-                                                    <div class="col-md-10 review_content">
-                                                        <div class="clearfix add_bottom_15">
-                                                            <span class="rating">8.5<small>/10</small> <strong>Rating
-                                                                    average</strong></span>
-                                                            <em>Published 10 Oct. 2019</em>
-                                                        </div>
-                                                        <h4>"Awesome Experience"</h4>
-                                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod
-                                                            scaevola sea. Et nec tantas accusamus salutatus, sit commodo
-                                                            veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius
-                                                            essent fuisset ut. Viderer petentium cu his. Tollit molestie
-                                                            suscipiantur his et.</p>
-                                                        <ul>
-                                                            <li><a href="#0"><i
-                                                                        class="icon_like"></i><span>Useful</span></a></li>
-                                                            <li><a href="#0"><i class="icon_dislike"></i><span>Not
-                                                                        useful</span></a></li>
-                                                            <li><a href="#0"><i class="arrow_back"></i>
-                                                                    <span>Reply</span></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <!-- /row -->
-                                            </div>
-                                            <!-- /review_card -->
-                                            <div class="review_card">
-                                                <div class="row">
-                                                    <div class="col-md-2 user_info">
-                                                        <figure><img src="/img/avatar1.jpg" alt=""></figure>
-                                                        <h5>Marika</h5>
-                                                    </div>
-                                                    <div class="col-md-10 review_content">
-                                                        <div class="clearfix add_bottom_15">
-                                                            <span class="rating">9.0<small>/10</small> <strong>Rating
-                                                                    average</strong></span>
-                                                            <em>Published 11 Oct. 2019</em>
-                                                        </div>
-                                                        <h4>"Really great dinner!!"</h4>
-                                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod
-                                                            scaevola sea. Et nec tantas accusamus salutatus, sit commodo
-                                                            veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius
-                                                            essent fuisset ut. Viderer petentium cu his. Tollit molestie
-                                                            suscipiantur his et.</p>
-                                                        <ul>
-                                                            <li><a href="#0"><i
-                                                                        class="icon_like"></i><span>Useful</span></a></li>
-                                                            <li><a href="#0"><i class="icon_dislike"></i><span>Not
-                                                                        useful</span></a></li>
-                                                            <li><a href="#0"><i class="arrow_back"></i>
-                                                                    <span>Reply</span></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <!-- /row -->
-                                                <div class="row reply">
-                                                    <div class="col-md-2 user_info">
-                                                        <figure><img src="/img/avatar.jpg" alt=""></figure>
-                                                    </div>
-                                                    <div class="col-md-10">
-                                                        <div class="review_content">
-                                                            <strong>Reply from Foogra</strong>
-                                                            <em>Published 3 minutes ago</em>
-                                                            <p><br>Hi Monika,<br><br>Eos tollit ancillae ea, lorem consulatu
-                                                                qui ne, eu eros eirmod scaevola sea. Et nec tantas accusamus
-                                                                salutatus, sit commodo veritus te, erat legere fabulas has
-                                                                ut. Rebum laudem cum ea, ius essent fuisset ut. Viderer
-                                                                petentium cu his. Tollit molestie suscipiantur his
-                                                                et.<br><br>Thanks</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /reply -->
-                                            </div>
-                                            <!-- /review_card -->
+                                            @endif
                                         </div>
                                         <!-- /reviews -->
-                                        <div class="text-end"><a href="leave-review.html" class="btn_1">Leave a
-                                                review</a></div>
+                                        <div class="text-end"><a href="{{ route('company.review', $company->slug) }}" class="btn_1">Deixe uma avaliação</a></div>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                         <!-- /tab-content -->
                     </div>
