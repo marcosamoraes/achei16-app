@@ -8,7 +8,6 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <form method="POST">
-                        @csrf
                         <div class="box_general write_review">
                             <h1 class="add_bottom_15">Escreva uma avaliação para "{{ $company->name }}"</h1>
 
