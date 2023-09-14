@@ -15,7 +15,7 @@
 								<div class="row g-0 custom-search-input">
 									<div class="col-lg-6">
 										<div class="form-group">
-											<input class="form-control" name="city" type="text" id="autocomplete" placeholder="Endereço, bairro, cidade...">
+											<input class="form-control" name="city" type="text" id="autocomplete" placeholder="Nome da empresa, endereço ou cidade...">
 											<i class="icon_pin_alt"></i>
 										</div>
 									</div>
@@ -168,13 +168,13 @@
             </div>
             <!-- /container -->
 
-            <div class="call_section lazy" data-bg="url(img/bg_call_section.jpg)">
+            <div class="call_section lazy" data-bg="url(img/bg_call_section.webp)">
                 <div class="container clearfix">
                     <div class="col-lg-5 col-md-6 float-end wow">
                         <div class="box_1">
                             <h3>Quer anunciar sua empresa com a gente?</h3>
                             <p>Se junte a nós para aumentar sua visibilidade na internet.</p>
-                            <a href="submit-restaurant.html" class="btn_1">Cadastrar</a>
+                            <a href="/cadastro" class="btn_1">Cadastrar</a>
                         </div>
                     </div>
                 </div>

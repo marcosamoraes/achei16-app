@@ -26,7 +26,7 @@
                                 @endif
                             @endforeach
                             <div class="search_bar_list">
-                                <input type="text" class="form-control" name="city" placeholder="Endereço, bairro, cidade..." value="{{ request()->city }}">
+                                <input type="text" class="form-control" name="city" placeholder="Nome da empresa, endereço ou cidade..." value="{{ request()->city }}">
                                 <input type="submit" value="Busca">
                             </div>
                         </form>

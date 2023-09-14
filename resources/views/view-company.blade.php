@@ -78,15 +78,17 @@
                                         <h2>{{ "{$company->name} em {$company->city}/{$company->state}" }}</h2>
                                         <p>{{ $company->description }}</p>
                                         <div class="add_bottom_45"></div>
-                                        <h2>Galeria de Fotos</h2>
-                                        <div class="pictures magnific-gallery clearfix">
-                                            @foreach ($company->images as $image)
-                                                <figure><a href="{{ env('PAINEL_URL') }}/storage/{{ $image }}" title="Photo title"
-                                                        data-effect="mfp-zoom-in"><img src="{{ env('PAINEL_URL') }}/storage/{{ $image }}"
-                                                            data-src="{{ env('PAINEL_URL') }}/storage/{{ $image }}" class="lazy"
-                                                            alt=""></a></figure>
-                                            @endforeach
-                                        </div>
+                                        @if ($company->images)
+                                            <h2>Galeria de Fotos</h2>
+                                            <div class="pictures magnific-gallery clearfix">
+                                                @foreach ($company->images as $image)
+                                                    <figure><a href="{{ env('PAINEL_URL') }}/storage/{{ $image }}" title="Photo title"
+                                                            data-effect="mfp-zoom-in"><img src="{{ env('PAINEL_URL') }}/storage/{{ $image }}"
+                                                                data-src="{{ env('PAINEL_URL') }}/storage/{{ $image }}" class="lazy"
+                                                                alt=""></a></figure>
+                                                @endforeach
+                                            </div>
+                                        @endif
                                         <!-- /pictures -->
 
                                         <div class="other_info">

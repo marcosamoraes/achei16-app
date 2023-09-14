@@ -257,7 +257,7 @@
 
 @media (max-width: 1024px) {
     #hero_video {
-        background: #ededed url(../img/home_section_1.jpg) center center
+        background: #ededed url(../img/home_section_1.webp) center center
             no-repeat;
         -webkit-background-size: cover;
         -moz-background-size: cover;

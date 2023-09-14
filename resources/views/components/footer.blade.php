@@ -24,13 +24,9 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <h3 data-bs-target="#collapse_2">Links Úteis</h3>
+                <h3 data-bs-target="#collapse_2">Google Partner</h3>
                 <div class="collapse dont-collapse-sm links" id="collapse_2">
-                    <ul>
-                        <li><a href="https://www.area17.com.br" target="_blank">www.area17.com.br</a></li>
-                        <li><a href="https://www.point19.com.br" target="_blank">www.point19.com.br</a></li>
-                        <li><a href="https://www.ponto18.com.br" target="_blank">www.ponto18.com.br</a></li>
-                    </ul>
+                    <img src="/img/google-partner.webp" height="100" alt="">
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">

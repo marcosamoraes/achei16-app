@@ -30,7 +30,7 @@
     @hasSection('image')
         <meta property="og:image" content="@yield('image')">
     @else
-        <meta property="og:image" content="/img/logo.png">
+        <meta property="og:image" content="/img/logo.webp">
     @endif
 
     <!-- Favicons-->

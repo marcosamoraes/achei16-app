@@ -2,9 +2,9 @@
     <div class="container">
         <div id="logo">
             <a href="/">
-                <img src="/img/logo.png" width="140" height="35" alt="" class="logo_normal">
+                <img src="/img/logo.webp" height="50" alt="" class="logo_normal">
                 @if (!request()->route()->named('listing') && !request()->route()->named('listing.view') && !request()->route()->named('register'))
-                    <img src="/img/logo.png" width="140" height="35" alt="" class="logo_sticky">
+                    <img src="/img/logo.webp" height="50" alt="" class="logo_sticky">
                 @endif
             </a>
         </div>
@@ -14,10 +14,10 @@
         </a>
         <nav class="main-menu">
             <div id="header_menu">
-                <a href="/" class="open_close">
+                <a href="#" class="open_close">
                     <i class="icon_close"></i><span>Menu</span>
                 </a>
-                <a href="/"><img src="/img/logo.png" width="140" height="35" alt=""></a>
+                <a href="/"><img src="/img/logo.webp" height="50" alt=""></a>
             </div>
             <ul>
                 <li>

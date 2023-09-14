@@ -196,7 +196,7 @@
 }
 @media (max-width: 1024px) {
   #hero_video {
-    background: #ededed url(../img/home_section_1.jpg) center center no-repeat;
+    background: #ededed url(../img/home_section_1.webp) center center no-repeat;
     @include background-size(cover);
     background-position: center;
   }
@@ -228,7 +228,7 @@
     position: relative;
     @include mobile {height: 480px;}
   }
-    
+
   .owl-carousel .owl-slide-animated {
      @include transform (translateX(20px));
     opacity: 0;
@@ -364,7 +364,7 @@ a.btn_explore{
   display: block;
   width: 60px;
   height: 60px;
-  @include border-radius(50%); 
+  @include border-radius(50%);
   line-height: 65px;
     text-align: center;
     position: absolute;
@@ -445,29 +445,29 @@ a.btn_explore{
         font-weight: 500;
         @include transform (translateY(20px) translateZ(0));
         @include transition-default-cubic-bezier;
-        
+
       }
-    }   
+    }
     img {
       @include transition-default;
        @include transform (scale(1.05));
-      
-      
+
+
     }
     &:hover img {
        @include transform (scale(1));
-      
+
     }
     &:hover h2 {
       @include transform (translateY(-5px) translateZ(0));
-      
+
     }
     &:hover p {
       opacity: 0.8;
       transition-delay: 0.2s;
       @include transform (translateY(0) translateZ(0));
-      
-      
+
+
     }
   }
 }
