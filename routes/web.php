@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PagesController;
+use App\Models\User;
+use App\Notifications\ClientCreated;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +25,7 @@ Route::post('/empresa/{company:slug}/contato', [PagesController::class, 'contact
 Route::get('/cadastro', [PagesController::class, 'register'])->name('register');
 Route::get('/contato', [PagesController::class, 'contact'])->name('contact');
 Route::post('/contato', [PagesController::class, 'storeContact'])->name('contact.store');
+
+Route::get('/mailable', function () {
+    return (new ClientCreated('123456'))->toMail(User::first());
+});
