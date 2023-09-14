@@ -143,6 +143,11 @@
                                                 <div class="col-md-4">
                                                     <h3>Horário de Funcionamento</h3>
                                                     <p>{{ $company->opening_hours }}</p>
+                                                    @if ($company->google_street_view)
+                                                        <a href="{{ str()->startsWith($company->google_street_view, 'http') ? $company->google_street_view : 'https://' . $company->google_street_view }}" target="_blank" rel="noopener noreferrer">
+                                                            <img src="/img/street-view.webp" alt="" height="100">
+                                                        </a>
+                                                    @endif
                                                 </div>
                                                 <div class="col-md-4">
                                                     <h3>Métodos de Pagamento</h3>

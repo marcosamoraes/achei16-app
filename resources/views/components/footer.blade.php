@@ -36,6 +36,7 @@
                         <li><i class="icon_mobile"></i>(16) 98193-8181</li>
                         <li><i class="icon_mail_alt"></i><a href="#0">contato@achei16.com.br</a></li>
                     </ul>
+                    <img src="/img/site-seguro.webp" height="100" alt="">
                 </div>
             </div>
         </div>
