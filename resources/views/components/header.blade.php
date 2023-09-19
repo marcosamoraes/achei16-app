@@ -3,6 +3,7 @@
         <div id="logo">
             <a href="/">
                 <img src="/img/logo.webp" height="50" alt="" class="logo_normal">
+                <img src="/img/google-partner-sm.webp" height="50" alt="">
                 @if (!request()->route()->named('listing') && !request()->route()->named('listing.view') && !request()->route()->named('register'))
                     <img src="/img/logo.webp" height="50" alt="" class="logo_sticky">
                 @endif
