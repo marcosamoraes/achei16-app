@@ -127,7 +127,7 @@
                             <ul>
                                 @foreach ($featuredCompanies as $key => $featuredCompany)
                                     @if ($key % 2 == 0)
-                                        @break
+                                        @continue
                                     @endif
                                     <li>
                                         <a href="/empresa/{{ str()->slug($featuredCompany->city) }}/{{ $featuredCompany->slug }}">
@@ -148,7 +148,7 @@
                             <ul>
                                 @foreach ($featuredCompanies as $key => $featuredCompany)
                                     @if ($key % 2 != 0)
-                                        @break
+                                        @continue
                                     @endif
                                     <li>
                                         <a href="/empresa/{{ str()->slug($featuredCompany->city) }}/{{ $featuredCompany->slug }}">
