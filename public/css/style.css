@@ -2132,6 +2132,7 @@ header {
     padding: 15px 0;
     z-index: 99999;
     border-bottom: 1px solid rgba(255, 255, 255, 0);
+    background-color: white;
 }
 @media (max-width: 767px) {
     header.header {
@@ -2260,7 +2261,7 @@ header.sticky a.open_close,
 
 /*First level styles */
 .main-menu > ul > li > a {
-    color: #fff;
+    color: #444;
     padding: 0 8px 10px 8px;
     font-size: 14px;
     font-size: 0.875rem;
