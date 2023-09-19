@@ -125,7 +125,6 @@
                     <div class="col-md-6">
                         <div class="list_home">
                             <ul>
-                                @dd($featuredCompanies)
                                 @foreach ($featuredCompanies as $key => $featuredCompany)
                                     @if ($key % 2 == 0)
                                         @break
@@ -149,7 +148,7 @@
                             <ul>
                                 @foreach ($featuredCompanies as $key => $featuredCompany)
                                     @if ($key % 2 != 0)
-                                        @continue
+                                        @break
                                     @endif
                                     <li>
                                         <a href="/empresa/{{ str()->slug($featuredCompany->city) }}/{{ $featuredCompany->slug }}">
