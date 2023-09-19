@@ -126,7 +126,7 @@
                         <div class="list_home">
                             <ul>
                                 @foreach ($featuredCompanies as $key => $featuredCompany)
-                                    @if ($key == 4)
+                                    @if ($key % 2 === 0)
                                         @break
                                     @endif
                                     <li>
@@ -147,17 +147,17 @@
                         <div class="list_home">
                             <ul>
                                 @foreach ($featuredCompanies as $key => $featuredCompany)
-                                    @if ($key < 4)
+                                    @if ($key % 2 !== 0)
                                         @continue
                                     @endif
                                     <li>
-                                        <a href="detail-restaurant.html">
+                                        <a href="/empresa/{{ str()->slug($featuredCompany->city) }}/{{ $featuredCompany->slug }}">
                                             <figure>
-                                                <img src="img/location_list_placeholder.png" data-src="img/location_list_4.jpg" alt="" class="lazy">
+                                                <img src="img/lazy-placeholder.png" data-src="{{ env('PAINEL_URL') }}/storage/{{ $featuredCompany->image }}" alt="" class="lazy">
                                             </figure>
-                                            <em>Vegetarian</em>
-                                            <h3>Mr. Pepper</h3>
-                                            <small>27 Old Gloucester St, 4563</small>
+                                            <em>{{ $featuredCompany->categories[0]->name }}</em>
+                                            <h3>{{ $featuredCompany->name }}</h3>
+                                            <small>{{ "{$featuredCompany->city}/{$featuredCompany->state}" }}</small>
                                         </a>
                                     </li>
                                 @endforeach
