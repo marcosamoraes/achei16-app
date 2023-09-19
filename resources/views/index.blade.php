@@ -126,7 +126,7 @@
                         <div class="list_home">
                             <ul>
                                 @foreach ($featuredCompanies as $key => $featuredCompany)
-                                    @if ($key % 2 === 0)
+                                    @if ($key % 2 != 0)
                                         @break
                                     @endif
                                     <li>
@@ -147,7 +147,7 @@
                         <div class="list_home">
                             <ul>
                                 @foreach ($featuredCompanies as $key => $featuredCompany)
-                                    @if ($key % 2 !== 0)
+                                    @if ($key % 2 == 0)
                                         @continue
                                     @endif
                                     <li>
