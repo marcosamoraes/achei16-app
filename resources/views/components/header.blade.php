@@ -1,22 +1,26 @@
-<header class="clearfix {{ !request()->route()->named('listing') && !request()->route()->named('listing.view') && !request()->route()->named('register') ? 'header element_to_stick' : 'header_in' }}">
+<header
+    class="clearfix {{ !request()->route()->named('listing') &&!request()->route()->named('listing.view') &&!request()->route()->named('register')? 'header element_to_stick': 'header_in' }}">
     <div class="container">
         <div id="logo">
             <a href="/">
                 <img src="/img/logo.webp" height="50" alt="" class="logo_normal">
-                <img src="/img/google-partner-sm.webp" height="50" alt="">
-                @if (!request()->route()->named('listing') && !request()->route()->named('listing.view') && !request()->route()->named('register'))
+                @if (
+                    !request()->route()->named('listing') &&
+                        !request()->route()->named('listing.view') &&
+                        !request()->route()->named('register'))
                     <img src="/img/logo.webp" height="50" alt="" class="logo_sticky">
                 @endif
+                <img src="/img/google-partner-sm.webp" height="50" alt="">
             </a>
         </div>
         <!-- /top_menu -->
-        <a href="#0" class="open_close">
+        <a href="#0" class="open_close" style="color: black">
             <i class="icon_menu"></i><span>Menu</span>
         </a>
         <nav class="main-menu">
             <div id="header_menu">
                 <a href="#" class="open_close">
-                    <i class="icon_close"></i><span>Menu</span>
+                    <i class="icon_close" style="color: black"></i><span>Menu</span>
                 </a>
                 <a href="/"><img src="/img/logo.webp" height="50" alt=""></a>
             </div>

@@ -24,7 +24,8 @@
     @hasSection('keywords')
         <meta name="keywords" content="@yield('keywords')">
     @else
-        <meta name="keywords" content="hotel em Ribeirão Preto, achei 16, restaurante, academia, veículos, bar, som automotivo, restaurante em ribeirão preto, cinema, o que fazer em Ribeirão Preto, lojas,  ">
+        <meta name="keywords"
+            content="hotel em Ribeirão Preto, achei 16, restaurante, academia, veículos, bar, som automotivo, restaurante em ribeirão preto, cinema, o que fazer em Ribeirão Preto, lojas,  ">
     @endif
 
     @hasSection('image')
@@ -37,10 +38,8 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="favicon.ico">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
-        href="favicon.ico">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
-        href="favicon.ico">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="favicon.ico">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="favicon.ico">
 
     <!-- GOOGLE WEB FONT -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -49,10 +48,10 @@
 
     <!-- BASE CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style.css?v=2" rel="stylesheet">
 
     <!-- YOUR CUSTOM CSS -->
-    <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/custom.css?v=2" rel="stylesheet">
 </head>
 
 <body>
@@ -68,7 +67,7 @@
 
     <div class="layer"></div><!-- Opacity Mask Menu Mobile -->
 
-	<!-- COMMON SCRIPTS -->
+    <!-- COMMON SCRIPTS -->
     <script src="/js/common_scripts.min.js"></script>
     <script src="/js/common_func.js"></script>
     <script src="/assets/validate.js"></script>

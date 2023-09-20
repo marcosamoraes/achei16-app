@@ -2458,7 +2458,7 @@ header.header_in .main-menu > ul > li:hover > a {
         text-align: center;
         position: relative;
         padding: 30px 0 25px 0;
-        background-color: #589442;
+        background-color: white;
     }
     #header_menu a.open_close {
         position: absolute;
@@ -4182,7 +4182,7 @@ ul#top_menu li a.login:before {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 0;
 }
 
