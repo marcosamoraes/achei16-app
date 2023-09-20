@@ -2,7 +2,7 @@
 
 @section('title', "{$company->name} - {$company->city}/{$company->state} - {$company->categories[0]->name}")
 
-@section('image', env('PAINEL_URL') . "/storage/{$company->image}")
+@section('image', $company->image ? env('PAINEL_URL') . '/storage/' . $company->image : '/img/logo.webp')
 @section('description', $company->description)
 @section('abstract', $company->tags->pluck('name')->implode(','))
 @section('keywords', $company->tags->pluck('name')->implode(','))
@@ -43,8 +43,8 @@
 
                     <div class="owl-carousel owl-theme carousel_1 magnific-gallery">
                         <div class="item" style="border:1px solid black; display: flex; justify-content: center; align-items: center">
-                            <a href="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" class="w-50" title="Photo title" data-effect="mfp-zoom-in">
-                                <img src="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" alt="">
+                            <a href="{{ $company->image ? env('PAINEL_URL') . '/storage/' . $company->image : '/img/logo.webp' }}" class="w-50" title="Photo title" data-effect="mfp-zoom-in">
+                                <img src="{{ $company->image ? env('PAINEL_URL') . '/storage/' . $company->image : '/img/logo.webp' }}" alt="">
                             </a>
                         </div>
                     </div>

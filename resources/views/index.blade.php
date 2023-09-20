@@ -75,7 +75,7 @@
                     <div class="item">
                         <div class="strip">
                             <figure>
-                                <img src="{{ env('PAINEL_URL') }}/storage/{{ $newCompany->image }}" data-src="{{ env('PAINEL_URL') }}/storage/{{ $newCompany->image }}" class="owl-lazy"
+                                <img src="img/lazy-placeholder.png" data-src="{{ $newCompany->image ? env('PAINEL_URL') . '/storage/' . $newCompany->image : '/img/logo.webp' }}" class="owl-lazy"
                                     alt="">
                                 <a href="/empresa/{{ str()->slug($newCompany->city) }}/{{ $newCompany->slug }}" class="strip_info">
                                     <small>{{ $newCompany->categories[0]->name }}</small>
@@ -132,7 +132,7 @@
                                     <li>
                                         <a href="/empresa/{{ str()->slug($featuredCompany->city) }}/{{ $featuredCompany->slug }}">
                                             <figure>
-                                                <img src="img/lazy-placeholder.png" data-src="{{ env('PAINEL_URL') }}/storage/{{ $featuredCompany->image }}" alt="" class="lazy">
+                                                <img src="img/lazy-placeholder.png" data-src="{{ $featuredCompany->image ? env('PAINEL_URL') . '/storage/' . $featuredCompany->image : '/img/logo.webp' }}" alt="" class="lazy">
                                             </figure>
                                             <em>{{ $featuredCompany->categories[0]->name }}</em>
                                             <h3>{{ $featuredCompany->name }}</h3>
@@ -153,7 +153,7 @@
                                     <li>
                                         <a href="/empresa/{{ str()->slug($featuredCompany->city) }}/{{ $featuredCompany->slug }}">
                                             <figure>
-                                                <img src="img/lazy-placeholder.png" data-src="{{ env('PAINEL_URL') }}/storage/{{ $featuredCompany->image }}" alt="" class="lazy">
+                                                <img src="img/lazy-placeholder.png" data-src="{{ $featuredCompany->image ? env('PAINEL_URL') . '/storage/' . $featuredCompany->image : '/img/logo.webp' }}" alt="" class="lazy">
                                             </figure>
                                             <em>{{ $featuredCompany->categories[0]->name }}</em>
                                             <h3>{{ $featuredCompany->name }}</h3>

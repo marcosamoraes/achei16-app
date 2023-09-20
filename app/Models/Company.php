@@ -150,7 +150,6 @@ class Company extends Model
     public function scopeApproved($query)
     {
         return $query->where('status', true)
-            ->whereNotNull('image')
             ->whereHas('orders', function ($query) {
                 $query->where('status', 'approved')
                     ->where('expire_at', '>', now());
@@ -162,7 +161,7 @@ class Company extends Model
      */
     public function isApproved(): Attribute
     {
-        return Attribute::get(fn () => $this->orders()->where('status', 'approved')->whereNotNull('image')->where('expire_at', '>', now())->exists());
+        return Attribute::get(fn () => $this->orders()->where('status', 'approved')->where('expire_at', '>', now())->exists());
     }
 
     /**

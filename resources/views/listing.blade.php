@@ -74,7 +74,7 @@
                                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                                     <div class="strip">
                                         <figure>
-                                            <img src="img/lazy-placeholder.png" data-src="{{ env('PAINEL_URL') }}/storage/{{ $company->image }}" class="img-fluid lazy"
+                                            <img src="img/lazy-placeholder.png" data-src="{{ $company->image ? env('PAINEL_URL') . '/storage/' . $company->image : '/img/logo.webp' }}" class="img-fluid lazy"
                                                 alt="">
                                             <a href="/empresa/{{ str()->slug($company->city) }}/{{ $company->slug }}" class="strip_info">
                                                 <small>{{ $company->categories[0]->name }}</small>
